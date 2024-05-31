@@ -24,16 +24,13 @@ jobs:
 
     - name: Login to DockerHub
       uses: docker/login-action@v1 
-      env:
-        DOCKER_HUB_USERNAME: ${{ secrets[format('{0}_DOCKER_HUB_USERNAME', steps.vars.outputs.env)] }}
-        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets[format('{0}_DOCKER_HUB_ACCESS_TOKEN', steps.vars.outputs.env)] }}
       with:
-        username: ${{ env.DOCKER_HUB_USERNAME }}
-        password: ${{ env.DOCKER_HUB_ACCESS_TOKEN }}
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: ${{ env.DOCKER_HUB_USERNAME }}/your-image-name:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/your-image-name:latest
