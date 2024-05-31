@@ -22,7 +22,7 @@ import com.fse2.usecase.blogservice.service.BlogService;
 public class BlogController {
 
     @Autowired
-    private BlogService blogService;
+    public BlogService blogService;
 
     @PostMapping("/add")
     public ResponseEntity<String> createOrUpdateBlog(@RequestBody BlogRequest blogRequest) {

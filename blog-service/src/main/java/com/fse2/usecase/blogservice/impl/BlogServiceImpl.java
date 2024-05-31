@@ -18,7 +18,7 @@ import com.fse2.usecase.blogservice.service.BlogService;
 public class BlogServiceImpl implements BlogService {
 
     @Autowired
-    private BlogRepository blogRepository;
+    public BlogRepository blogRepository;
 
     @Override
     public String createOrUpdateBlog(BlogRequest blogRequest) {

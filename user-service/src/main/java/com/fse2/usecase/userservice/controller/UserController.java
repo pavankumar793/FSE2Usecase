@@ -19,7 +19,7 @@ import com.fse2.usecase.userservice.service.UserService;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    public UserService userService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody UserRegistrationRequest request) {

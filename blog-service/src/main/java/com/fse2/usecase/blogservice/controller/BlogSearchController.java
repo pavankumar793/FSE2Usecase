@@ -17,7 +17,7 @@ import com.fse2.usecase.blogservice.service.BlogService;
 public class BlogSearchController {
     
     @Autowired
-    private BlogService blogService;
+    public BlogService blogService;
 
     @GetMapping("/{category}")
     public ResponseEntity<List<Blog>> getAllBlogsByCategory(@PathVariable("category") String category) {
