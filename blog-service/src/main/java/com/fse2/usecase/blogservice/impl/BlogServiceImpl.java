@@ -34,7 +34,7 @@ public class BlogServiceImpl implements BlogService {
                 existingBlog.setBlogAuthor(blogRequest.getBlogAuthor());
                 existingBlog.setBlogCategory(blogRequest.getBlogCategory());
                 blogRepository.save(existingBlog);
-                return "Blog already exists hence updated successfully";
+                return "Blog already exists so updated successfully";
             } else {
                 Blog blog = new Blog();
                 blog.setBlogName(blogRequest.getBlogName());

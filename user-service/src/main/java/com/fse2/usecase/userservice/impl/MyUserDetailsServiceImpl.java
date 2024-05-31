@@ -55,11 +55,11 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, UserService
     @Override
     public String register(UserRegistrationRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already in use");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is already in use");
         }
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already in use");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is already in use");
         }
 
         User newUser = new User();
