@@ -7,8 +7,9 @@ import com.fse2.usecase.blogservice.entity.Blog;
 
 public interface BlogService {
     String createOrUpdateBlog(BlogRequest blogRequest);
-    String deleteBlog(String blogName);
+    String deleteBlog(String blogId);
     List<Blog> getAllBlogs();
+    List<Blog> getAllBlogsOfUser(String userId);
     List<Blog> getBlogsByCategory(String blogCategory);
     List<Blog> getBlogsByCategoryAndDuration(String blogCategory, String durationFrom, String durationTo);
 }

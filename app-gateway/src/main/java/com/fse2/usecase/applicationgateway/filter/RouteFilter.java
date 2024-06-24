@@ -33,7 +33,6 @@ public class RouteFilter extends ZuulFilter {
 		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-
 		log.info("RouteFilter: " + String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 		
 		return null;

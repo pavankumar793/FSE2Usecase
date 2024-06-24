@@ -1,0 +1,24 @@
+.my-form {
+    justify-content: center;
+    display: flex;
+    align-items: normal;
+}
+.full-width {
+    width: 29%;
+}
+.searchButton {
+    margin-left: 15px;
+    background: rgb(107 63 186) !important;
+    border-radius: 0px;
+    color: white !important;
+    width: 116px;
+    height: 56px;
+}
+.mat-elevation-z8 {
+    width: 1200px;
+    padding-right: 60px;
+    margin-left: 11px;
+}
+.table {
+    width: 100%;
+}

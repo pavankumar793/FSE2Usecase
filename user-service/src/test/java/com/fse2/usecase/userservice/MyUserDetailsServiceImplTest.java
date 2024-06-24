@@ -130,7 +130,6 @@ public class MyUserDetailsServiceImplTest {
     @Test
     public void testAuthenticateUser_IncorrectUsernameOrEmail() {
         when(userRepository.findByUsername("username")).thenReturn(null);
-        when(userRepository.findByEmail("username")).thenReturn(null);
 
         assertThrows(ResponseStatusException.class, () -> userService.authenticateUser(loginRequest));
     }

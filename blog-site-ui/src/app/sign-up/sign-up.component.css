@@ -1,0 +1,12 @@
+.my-form {
+    margin-left: 18px;
+}
+.full-width {
+    width: 40%;
+}
+.submitButton {
+    margin-left: 15px;
+    background: rgb(107 63 186) !important;
+    border-radius: 0px;
+    color: white !important;
+}

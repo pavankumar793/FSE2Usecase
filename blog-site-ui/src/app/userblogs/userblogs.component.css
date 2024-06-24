@@ -1,0 +1,20 @@
+.NewBlogButton {
+    margin-left: 15px;
+    background: rgb(107 63 186) !important;
+    border-radius: 0px;
+    color: white !important;
+    height: inherit;
+}
+
+.main-body {
+    width: 1250px;
+    margin-left: 14px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  .action {
+    display: flex;
+    gap: 5px;
+  }

@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class BlogRequest {
 
+    private String blogId;
+
     @NotBlank
     @Size(min = 20)
     private String blogName;
@@ -22,5 +24,8 @@ public class BlogRequest {
 
     @NotBlank
     private String blogAuthor;
+
+    @NotBlank
+    private String userId;
     
 }

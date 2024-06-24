@@ -12,4 +12,5 @@ public interface BlogRepository extends MongoRepository<Blog, String> {
     List<Blog> findByBlogName(String blogName);
     List<Blog> findByBlogCategory(String blogCategory);
     List<Blog> findByBlogCategoryAndBlogCreatedOnBetween(String blogCategory, Date durationFrom, Date durationTo);
+    List<Blog> findByUserId(String userId);
 }

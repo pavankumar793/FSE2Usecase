@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fse2.usecase.blogservice.dto.BlogRequest;
@@ -23,27 +24,29 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public String createOrUpdateBlog(BlogRequest blogRequest) {
         try {
-            List<Blog> existingBlogs = blogRepository.findByBlogNameAndBlogCategoryAndBlogArticleAndBlogAuthor(
-                    blogRequest.getBlogName(), blogRequest.getBlogCategory(), blogRequest.getBlogArticle(),
-                    blogRequest.getBlogAuthor());
+            Blog existingBlog = new Blog();
 
-            if (!existingBlogs.isEmpty()) {
-                Blog existingBlog = existingBlogs.get(0);
-                existingBlog.setBlogName(blogRequest.getBlogName());
-                existingBlog.setBlogArticle(blogRequest.getBlogArticle());
-                existingBlog.setBlogAuthor(blogRequest.getBlogAuthor());
-                existingBlog.setBlogCategory(blogRequest.getBlogCategory());
-                blogRepository.save(existingBlog);
-                return "Blog already exists so updated successfully";
-            } else {
-                Blog blog = new Blog();
-                blog.setBlogName(blogRequest.getBlogName());
-                blog.setBlogArticle(blogRequest.getBlogArticle());
-                blog.setBlogAuthor(blogRequest.getBlogAuthor());
-                blog.setBlogCategory(blogRequest.getBlogCategory());
-                blogRepository.save(blog);
-                return "Blog created successfully";
+            if (blogRequest.getBlogId() != null) {
+                existingBlog = blogRepository.findById(blogRequest.getBlogId()).orElse(null);
+                if (existingBlog != null) {
+                    existingBlog.setBlogId(blogRequest.getBlogId());
+                    existingBlog.setBlogName(blogRequest.getBlogName());
+                    existingBlog.setBlogArticle(blogRequest.getBlogArticle());
+                    existingBlog.setBlogAuthor(blogRequest.getBlogAuthor());
+                    existingBlog.setBlogCategory(blogRequest.getBlogCategory());
+                    existingBlog.setUserId(blogRequest.getUserId());
+                    blogRepository.save(existingBlog);
+                    return "Blog already exists so updated successfully";
+                }
             }
+            Blog blog = new Blog();
+            blog.setBlogName(blogRequest.getBlogName());
+            blog.setBlogArticle(blogRequest.getBlogArticle());
+            blog.setBlogAuthor(blogRequest.getBlogAuthor());
+            blog.setBlogCategory(blogRequest.getBlogCategory());
+            blog.setUserId(blogRequest.getUserId());
+            blogRepository.save(blog);
+            return "Blog created successfully";
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Error occurred while processing the blog data", e);
@@ -51,18 +54,28 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public String deleteBlog(String blogName) {
+    public String deleteBlog(String blogId) {
         try {
-            List<Blog> existingBlogs = blogRepository.findByBlogName(blogName);
-            if (existingBlogs.isEmpty()) {
+            Blog existingBlog = blogRepository.findById(blogId).orElse(null);
+            if (ObjectUtils.isEmpty(existingBlog)) {
                 return "Blog not found";
             } else {
-                blogRepository.delete(existingBlogs.get(0));
+                blogRepository.delete(existingBlog);
                 return "Blog deleted successfully";
             }
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "Error occurred while deleting the blog", e);
+        }
+    }
+
+    @Override
+    public List<Blog> getAllBlogsOfUser(String userId) {
+        try {
+            return blogRepository.findByUserId(userId);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Error occurred while fetching the blogs", e);
         }
     }
 

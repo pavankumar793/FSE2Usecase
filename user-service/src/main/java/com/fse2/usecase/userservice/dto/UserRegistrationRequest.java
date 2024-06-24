@@ -11,6 +11,12 @@ import lombok.Data;
 public class UserRegistrationRequest {
 
     @NotBlank
+    private String name;
+
+    @NotBlank
+    private String address;
+
+    @NotBlank
     private String username;
 
     @NotBlank
@@ -21,5 +27,11 @@ public class UserRegistrationRequest {
     @Size(min = 8)
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters and contain a number")
     private String password;
+
+    @NotBlank
+    private String gender;
+
+    @NotBlank
+    private String dateOfBirth;
     
 }

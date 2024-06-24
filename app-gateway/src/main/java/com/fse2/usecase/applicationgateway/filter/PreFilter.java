@@ -32,7 +32,6 @@ public class PreFilter extends ZuulFilter {
 	  public Object run() {
 	    RequestContext ctx = RequestContext.getCurrentContext();
 	    HttpServletRequest request = ctx.getRequest();
-
 	    log.info("PreFilter: " + String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 	    
 	    return null;

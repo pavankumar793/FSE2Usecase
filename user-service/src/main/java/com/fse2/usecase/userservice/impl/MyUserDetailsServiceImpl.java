@@ -63,9 +63,13 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, UserService
         }
 
         User newUser = new User();
+        newUser.setName(request.getName());
+        newUser.setAddress(request.getAddress());
         newUser.setUsername(request.getUsername());
         newUser.setEmail(request.getEmail());
         newUser.setPassword(encoder.encode(request.getPassword()));
+        newUser.setGender(request.getGender());
+        newUser.setDateOfBirth(request.getDateOfBirth());
 
         userRepository.save(newUser);
 
@@ -75,11 +79,11 @@ public class MyUserDetailsServiceImpl implements UserDetailsService, UserService
     @Override
     public String authenticateUser(LoginRequest loginRequest) {
         User user = userRepository.findByUsername(loginRequest.getUsernameOrEmail());
+        // if (user == null) {
+        //     user = userRepository.findByEmail(loginRequest.getUsernameOrEmail());
+        // }
         if (user == null) {
-            user = userRepository.findByEmail(loginRequest.getUsernameOrEmail());
-        }
-        if (user == null) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect username or email");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Incorrect username");
         }
         try {
             authenticationManager.authenticate(

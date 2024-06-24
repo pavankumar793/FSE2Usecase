@@ -21,12 +21,14 @@ public class BlogSearchController {
 
     @GetMapping("/{category}")
     public ResponseEntity<List<Blog>> getAllBlogsByCategory(@PathVariable("category") String category) {
+
         List<Blog> allBlogs = blogService.getBlogsByCategory(category);
         if (!allBlogs.isEmpty()) {
             return ResponseEntity.ok(allBlogs);
         } else {
             return ResponseEntity.noContent().build();
         }
+
     }
 
     @GetMapping("/{category}/{durationFrom}/{durationTo}")

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -29,11 +30,11 @@ public class BlogServiceImplTest {
 
         // Test data
         BlogRequest blogRequest = new BlogRequest();
+        // blogRequest.setBlogId("1");
         blogRequest.setBlogName("MyFirstBlog");
         blogRequest.setBlogCategory("Action");
         blogRequest.setBlogArticle("This is my first blog");
         blogRequest.setBlogAuthor("PavanKumarChivukula");
-        when(blogRepository.findByBlogNameAndBlogCategoryAndBlogArticleAndBlogAuthor(anyString(), anyString(), anyString(), anyString())).thenReturn(new ArrayList<>());
 
         // Calling method under test
         String result = blogService.createOrUpdateBlog(blogRequest);
@@ -51,11 +52,12 @@ public class BlogServiceImplTest {
 
         // Test data
         BlogRequest blogRequest = new BlogRequest();
+        blogRequest.setBlogId("1");
         blogRequest.setBlogName("MyFirstBlog");
         blogRequest.setBlogCategory("Action");
         blogRequest.setBlogArticle("This is my first blog");
         blogRequest.setBlogAuthor("PavanKumarChivukula");
-        List<Blog> existingBlogs = new ArrayList<>();
+        // List<Blog> existingBlogs = new ArrayList<>();
         Blog existingBlog = new Blog();
         existingBlog.setBlogId("1");
         existingBlog.setBlogName("MyFirstBlog");
@@ -63,8 +65,8 @@ public class BlogServiceImplTest {
         existingBlog.setBlogArticle("This is my first blog");
         existingBlog.setBlogAuthor("PavanKumarChivukula");
         existingBlog.setBlogCreatedOn(new Date());
-        existingBlogs.add(existingBlog);
-        when(blogRepository.findByBlogNameAndBlogCategoryAndBlogArticleAndBlogAuthor(anyString(), anyString(), anyString(), anyString())).thenReturn(existingBlogs);
+        // existingBlogs.add(existingBlog);
+        when(blogRepository.findById(anyString())).thenReturn(Optional.of(existingBlog));
 
         // Calling method under test
         String result = blogService.createOrUpdateBlog(blogRequest);
@@ -82,7 +84,7 @@ public class BlogServiceImplTest {
 
         // Test data
         String blogName = "MyFirstBlog";
-        List<Blog> existingBlogs = new ArrayList<>();
+        // List<Blog> existingBlogs = new ArrayList<>();
         Blog existingBlog = new Blog();
         existingBlog.setBlogId("1");
         existingBlog.setBlogName("MyFirstBlog");
@@ -90,8 +92,8 @@ public class BlogServiceImplTest {
         existingBlog.setBlogArticle("This is my first blog");
         existingBlog.setBlogAuthor("PavanKumarChivukula");
         existingBlog.setBlogCreatedOn(new Date());
-        existingBlogs.add(existingBlog);
-        when(blogRepository.findByBlogName(anyString())).thenReturn(existingBlogs);
+        // existingBlogs.add(existingBlog);
+        when(blogRepository.findById(anyString())).thenReturn(Optional.of(existingBlog));
 
         // Calling method under test
         String result = blogService.deleteBlog(blogName);

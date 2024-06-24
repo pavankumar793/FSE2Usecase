@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+    <h1 style="font-size: xx-large;">Blog Form</h1>
+</div>
+<form [formGroup]="blogForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Blog name</mat-label>
+                <input matInput type="text" placeholder="Ex. MyFirstBlog" formControlName="blogName">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Blog Category</mat-label>
+                <input matInput placeholder="Ex. Action" formControlName="blogCategory">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Author</mat-label>
+                <input matInput placeholder="Ex. Pavan" formControlName="blogAuthor">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Article</mat-label>
+                <input matInput placeholder="Ex. This is my first blog..." formControlName="blogArticle">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+</form>

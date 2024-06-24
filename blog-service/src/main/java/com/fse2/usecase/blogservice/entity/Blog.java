@@ -16,4 +16,5 @@ public class Blog {
     private String blogArticle;
     private String blogAuthor;
     private Date blogCreatedOn = new Date();
+    private String userId;
 }

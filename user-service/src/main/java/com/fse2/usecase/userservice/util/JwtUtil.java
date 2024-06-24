@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.function.Function;
 @Component
 public class JwtUtil {
-    private String SECRET_KEY = "your_secret_key";
+    private String SECRET_KEY = "mySuperSecretKeyForJWTcbhjbsdjhvhgsvcbcjhsgkjsdbvjhsbcjbScjhvjasbjhcsbjhvjhsbcjhsvjvhjvsjshvcvhcbjavcjsbvjhsvchg";
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -37,7 +37,7 @@ public class JwtUtil {
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256), SignatureAlgorithm.HS256).compact();
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY).compact();
     }
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
