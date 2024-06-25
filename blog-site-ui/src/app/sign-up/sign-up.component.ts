@@ -26,7 +26,7 @@ export class SignUpComponent {
   @ViewChild('userForm') userForm!: NgForm;
   userFormValidation!: FormGroup;
   hideMain: boolean = false;
-  constructor(private userService:UserService, private snackBar:MatSnackBar, private fb: FormBuilder, private router: Router) {
+  constructor(private userService:UserService, public snackBar:MatSnackBar, private fb: FormBuilder, private router: Router) {
     this.userFormValidation = this.fb.group({
       fnameValidator: ['', Validators.required],
       lnameValidator: ['', Validators.required],
@@ -39,14 +39,6 @@ export class SignUpComponent {
     });
    }
 
-  lname: string = "";
-  fname: string = "";
-  address: string = "";
-  email: string = "";
-  username: string = "";
-  password: string = "";
-  gender: string = "";
-  dateOfBirth: Date = new Date();
   user: UserRegister= new UserRegister();
 
   ngOnInit() {
@@ -54,14 +46,13 @@ export class SignUpComponent {
   }
 
   register() {
-    console.log('Registering user');
-    this.user.name = this.fname + ' ' + this.lname;
-    this.user.address = this.address;
-    this.user.email = this.email;
-    this.user.username = this.username;
-    this.user.password = this.password
-    this.user.gender = this.gender;
-    this.user.dateOfBirth = this.dateOfBirth;
+    this.user.name = this.userForm.value.fnameValidator + ' ' + this.userForm.value.lnameValidator;
+    this.user.address = this.userForm.value.addressValidator;
+    this.user.email = this.userForm.value.emailValidator;
+    this.user.username = this.userForm.value.usernameValidator;
+    this.user.password = this.userForm.value.passwordValidator;
+    this.user.gender = this.userForm.value.genderValidator;
+    this.user.dateOfBirth = this.userForm.value.dateOfBirthValidator;
     this.userService.register(this.user).subscribe({
       next: (message) => {
         this.snackBar.open('User registered successfully!', 'Close', {

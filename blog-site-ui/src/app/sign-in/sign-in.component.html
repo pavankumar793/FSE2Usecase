@@ -40,12 +40,12 @@
 <form #userForm="ngForm" [formGroup]="userFormValidation" (ngSubmit)="login()" class="my-form">
     <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" formControlName="usernameOrEmailValidator" name="usernameOrEmail" [(ngModel)]="usernameOrEmail">
+        <input matInput placeholder="Username" formControlName="usernameOrEmailValidator" name="usernameOrEmail">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" formControlName="passwordValidator" name="password" [(ngModel)]="password">
+        <input matInput placeholder="Password" formControlName="passwordValidator" name="password">
     </mat-form-field>
     <br>
 </form>

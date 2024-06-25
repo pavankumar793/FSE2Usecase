@@ -30,9 +30,6 @@ export class BlogsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('searchForm') searchForm!: NgForm;
   searchFormValidation!: FormGroup;
-  category: string = "";
-  fromDate!: Date;
-  toDate!: Date;
   categories = [
     { value: 'Action', viewValue: 'Action' },
     { value: 'Anime', viewValue: 'Anime' },
@@ -55,11 +52,9 @@ export class BlogsComponent implements AfterViewInit {
   }
 
   onSubmit() {
-    console.log("search form submitted" + this.category + " " + this.fromDate + " " + this.toDate);
-    if (this.fromDate == undefined || this.toDate == undefined) {
-      this.blogService.searchByCategory(this.category).subscribe({
+    if (this.searchForm.value.fromDateValidator == "" || this.searchForm.value.toDateValidator == "") {
+      this.blogService.searchByCategory(this.searchForm.value.categoryValidator).subscribe({
         next: (message) => {
-          console.log('Search result:', message);
           this.blogs = JSON.parse(message);
           this.dataSource = new MatTableDataSource<Blog>(this.blogs == null ? [] : this.blogs);
           this.dataSource.paginator = this.paginator;
@@ -69,9 +64,8 @@ export class BlogsComponent implements AfterViewInit {
         }
       });
     } else {
-      this.blogService.searchByCategoryAndFromToDates(this.category, new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(this.fromDate), new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(this.toDate)).subscribe({
+      this.blogService.searchByCategoryAndFromToDates(this.searchForm.value.categoryValidator, new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(this.searchForm.value.fromDateValidator), new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(this.searchForm.value.toDateValidator)).subscribe({
         next: (message) => {
-          console.log('Search result:', message);
           this.blogs = JSON.parse(message);
           this.dataSource = new MatTableDataSource<Blog>(this.blogs == null ? [] : this.blogs);
           this.dataSource.paginator = this.paginator;

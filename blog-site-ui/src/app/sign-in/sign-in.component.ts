@@ -23,11 +23,9 @@ export class SignInComponent {
   @ViewChild('userForm') userForm!: NgForm;
   userFormValidation!: FormGroup;
   hideMain: boolean = false;
-  usernameOrEmail: string = "";
-  password: string = "";
   user: UserLogin= new UserLogin();
 
-  constructor(private userService:UserService, private blogService:BlogService, private snackBar:MatSnackBar, private fb: FormBuilder, private router: Router) {
+  constructor(private userService:UserService, private blogService:BlogService, public snackBar:MatSnackBar, private fb: FormBuilder, private router: Router) {
     this.userFormValidation = this.fb.group({
       usernameOrEmailValidator: ['', Validators.required],
       passwordValidator: ['', [Validators.required]]
@@ -42,23 +40,22 @@ export class SignInComponent {
    }
 
   login() {
-    console.log('Logging in user');
-    this.user.usernameOrEmail = this.usernameOrEmail;
-    this.user.password = this.password;
+    this.user.usernameOrEmail = this.userForm.value.usernameOrEmailValidator;
+    this.user.password = this.userForm.value.passwordValidator;
     this.userService.login(this.user).subscribe({
       next: (message) => {
         this.snackBar.open('User Logged In successfully!', 'Close', {
           duration: 3000,
           panelClass: ['success-snackbar']
         });
-        this.blogService.setUserName(this.usernameOrEmail);
+        this.blogService.setUserName(this.userForm.value.usernameOrEmailValidator);
         this.router.navigate(['/userblogs']);
       },
       error: (error) => {
         console.error('Login failed:', error);
-        let errorMessage = 'Login failed.'; // Default message
+        let errorMessage = 'Login failed.';
         if (error && error.message) {
-          errorMessage = error.message; // Use server's error message if available
+          errorMessage = error.message;
         }
         this.snackBar.open(errorMessage, 'Close', {
           duration: 3000,

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BlogService } from '../services/services/blog.service';
-import { Blog, BlogRequest } from '../models/blog.model';
+import { BlogRequest } from '../models/blog.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,7 +34,7 @@ export class UserblogaddeditComponent {
 
   ngOnInit(): void {
     this.blogForm.patchValue(this.data);
-    if (this.data.blogId) {
+    if (this.data) {
       this.blogRequest.blogId = this.data.blogId;
     }
   }
@@ -54,7 +54,7 @@ export class UserblogaddeditComponent {
             this._dialogRef.close(true);
           },
           error: (err: any) => {
-            console.error(err);
+            console.error("Error while processing the request.");
           },
         });
     }

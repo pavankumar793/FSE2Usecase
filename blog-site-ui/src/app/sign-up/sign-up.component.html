@@ -40,37 +40,37 @@
 <form #userForm="ngForm" [formGroup]="userFormValidation" (ngSubmit)="register()" class="my-form">
     <mat-form-field class="full-width">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First name" formControlName="fnameValidator" [(ngModel)]="fname" name="fname">
+        <input matInput placeholder="First name" formControlName="fnameValidator" name="fname">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" formControlName="lnameValidator" [(ngModel)]="lname" name="lname">
+        <input matInput placeholder="Last Name" formControlName="lnameValidator" name="lname">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Address</mat-label>
-        <input matInput placeholder="Address" formControlName="addressValidator" [(ngModel)]="address" name="address">
+        <input matInput placeholder="Address" formControlName="addressValidator" name="address">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" formControlName="emailValidator" [(ngModel)]="email" name="email">
+        <input matInput placeholder="Email" formControlName="emailValidator" name="email">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" formControlName="usernameValidator" [(ngModel)]="username" name="username">
+        <input matInput placeholder="Username" formControlName="usernameValidator" name="username">
     </mat-form-field>
     <br>
     <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" formControlName="passwordValidator" [(ngModel)]="password" name="password">
+        <input matInput placeholder="Password" formControlName="passwordValidator" name="password">
     </mat-form-field>
     <br>
     <section>
         <label>Gender:</label>
-        <mat-radio-group [(ngModel)]="gender" formControlName="genderValidator" name="gender">
+        <mat-radio-group formControlName="genderValidator" name="gender">
             <mat-radio-button class="example-margin" value="after">Male</mat-radio-button>
             <mat-radio-button class="example-margin" value="before">Female</mat-radio-button>
             <mat-radio-button class="example-margin" value="before">Other</mat-radio-button>
@@ -79,7 +79,7 @@
     <br>
     <mat-form-field>
         <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dateOfBirthValidator" placeholder="Choose a date" [(ngModel)]="dateOfBirth"
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirthValidator" placeholder="Choose a date"
             name="dateOfBirth">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>

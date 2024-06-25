@@ -47,14 +47,12 @@ export class UserService {
 
   private handleError(error: any) {
     let message = 'An error occurred. Please try again later.';
-    if (error.error.includes("Email is already in use")){
-      message = "Email is already in use";
-    } else if (error.error.includes("Username is already in use")){
+    if (error.error.includes("Username is already in use")){
       message = "Username is already in use";
     } else if (error.error.includes("Incorrect password")){
       message = "Incorrect password";
-    } else if (error.error.includes("Incorrect username or email")){
-      message = "Incorrect username or email";
+    } else if (error.error.includes("Incorrect username")){
+      message = "Incorrect username";
     }
     console.error('An error occurred:', message);
     return throwError(() => new Error(message));

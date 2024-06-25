@@ -41,7 +41,7 @@
     &nbsp;
     <mat-form-field class="full-width">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="categoryValidator" [(ngModel)]="category">
+      <mat-select formControlName="categoryValidator">
         <mat-option *ngFor="let category of categories" [value]="category.value">
           {{ category.viewValue }}
         </mat-option>
@@ -50,14 +50,14 @@
     &nbsp;
     <mat-form-field class="full-width">
       <mat-label>From</mat-label>
-      <input matInput [matDatepicker]="pickerFrom" formControlName="fromDateValidator" [(ngModel)]="fromDate">
+      <input matInput [matDatepicker]="pickerFrom" formControlName="fromDateValidator">
       <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
       <mat-datepicker #pickerFrom></mat-datepicker>
     </mat-form-field>
     &nbsp;
     <mat-form-field class="full-width">
       <mat-label>To</mat-label>
-      <input matInput [matDatepicker]="pickerTo" formControlName="toDateValidator" [(ngModel)]="toDate">
+      <input matInput [matDatepicker]="pickerTo" formControlName="toDateValidator">
       <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
       <mat-datepicker #pickerTo></mat-datepicker>
     </mat-form-field>
