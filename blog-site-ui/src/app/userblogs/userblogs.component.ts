@@ -19,6 +19,8 @@ import { CommonModule } from '@angular/common';
 import { UserblogaddeditComponent } from '../userblogaddedit/userblogaddedit.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from '../services/services/user.service';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
 
 @Component({
   selector: 'app-userblogs',
@@ -91,15 +93,24 @@ export class UserblogsComponent {
   }
 
   deleteBlog(id: string) {
-    this.blogService.deleteBlog(id).subscribe({
-      next: (res) => {
-        this.getBlogsList();
-        this.snackBar.open('Blog delted successfully!', 'Close', {
-          duration: 3000,
-          panelClass: ['success-snackbar']
+    const dialogRef = this._dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Are you sure you want to delete this blog?'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.blogService.deleteBlog(id).subscribe({
+          next: (res) => {
+            this.getBlogsList();
+            this.snackBar.open('Blog deleted successfully!', 'Close', {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
+          },
+          error: console.log,
         });
-      },
-      error: console.log,
+      }
     });
   }
 
