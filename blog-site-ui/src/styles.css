@@ -16,3 +16,14 @@ background-color: #f44336;
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.p {
+  margin: 0;
+  color: var(--gray-700);
+}
+
+.userInfo {
+  padding-top: 15px;
+  font-size: smaller;
+  color: #1A1B1F;
+}

@@ -11,11 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BlogService } from '../services/services/blog.service';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, MatButtonModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
@@ -24,6 +25,8 @@ export class SignInComponent {
   userFormValidation!: FormGroup;
   hideMain: boolean = false;
   user: UserLogin= new UserLogin();
+  userInfo: boolean = false;
+  userInfoName: string = "";
 
   constructor(private userService:UserService, private blogService:BlogService, public snackBar:MatSnackBar, private fb: FormBuilder, private router: Router) {
     this.userFormValidation = this.fb.group({
@@ -36,6 +39,10 @@ export class SignInComponent {
     this.hideMain = false;
     if (localStorage.getItem('currentUser')) {
       this.router.navigate(['/userblogs']);
+    }
+    if (this.blogService.getUserName() != "") {
+      this.userInfo = true;
+      this.userInfoName = this.blogService.getUserName();
     }
    }
 

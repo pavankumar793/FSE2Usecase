@@ -30,6 +30,9 @@
     </svg>
     <span style="margin-left: 5px;"> Home </span>
     <span class="example-spacer"></span>
+    <div class="userInfo" *ngIf="userInfo">
+      <p>Hi, {{userInfoName}}</p>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-toolbar style="background: rgb(238 174 105 / 45%); height: 30px;">

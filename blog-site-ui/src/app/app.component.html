@@ -56,10 +56,10 @@
       "Segoe UI Symbol";
   }
 
-  p {
+  /* p {
     margin: 0;
     color: var(--gray-700);
-  }
+  } */
 
   main {
     width: 100%;
@@ -176,7 +176,7 @@
     }
   }
 </style>
-<mat-toolbar style="background:rgb(216, 165, 117); position: fixed;" *ngIf="!hideMain">
+<mat-toolbar style="background:rgb(216, 165, 117);" *ngIf="!hideMain">
   <mat-toolbar-row style="padding-top: 4px; padding-bottom: 2px;">
     <svg height="50px" width="50px" version="1.1" id="Layer_1"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 496 496"
@@ -208,12 +208,15 @@
     </svg>
     <span style="margin-left: 5px;"> Home </span>
     <span class="example-spacer"></span>
+    <div class="userInfo" *ngIf="userInfo">
+      <p>Hi, {{userInfoName}}</p>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <main class="main" *ngIf="!hideMain">
   <div class="content">
     <div class="left-side">
-      <h1>Hello</h1>
+      <h4>Hello</h4>
       <p>Welcome to the Blog Site Application</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>

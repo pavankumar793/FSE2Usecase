@@ -25,7 +25,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 @Component({
   selector: 'app-userblogs',
   standalone: true,
-  imports: [MatSnackBarModule, CommonModule, MatSelectModule, ReactiveFormsModule , MatInputModule, FormsModule, MatTableModule, MatIconModule, MatButtonModule, MatSortModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule],
+  imports: [MatSnackBarModule, CommonModule, MatSelectModule, ReactiveFormsModule , MatInputModule, FormsModule, MatTableModule, MatIconModule, MatButtonModule, MatSortModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule, MatIconModule, MatButtonModule],
   templateUrl: './userblogs.component.html',
   styleUrl: './userblogs.component.css'
 })
@@ -34,6 +34,8 @@ export class UserblogsComponent {
   hideMain: boolean = false;
   displayedColumns: string[] = ['id', 'name', 'category', 'article', 'author', 'createdOn', 'action'];
   dataSource = new MatTableDataSource<Blog>(this.blogs);
+  userInfo: boolean = false;
+  userInfoName: string = "";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -42,6 +44,10 @@ export class UserblogsComponent {
 
   ngOnInit(): void {
     this.hideMain = false;
+    if (this.blogService.getUserName() != "") {
+      this.userInfo = true;
+      this.userInfoName = this.blogService.getUserName();
+    }
     this.getBlogsList();
   }
 
@@ -125,6 +131,7 @@ export class UserblogsComponent {
 
   logOut() {
     localStorage.removeItem('currentUser');
+    this.blogService.setUserName("");
     this.router.navigate(['/home']);
     this.snackBar.open("You have been successfully logged out", 'Close', {
       duration: 3000,

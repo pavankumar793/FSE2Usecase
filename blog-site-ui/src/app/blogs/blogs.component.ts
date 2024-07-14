@@ -13,16 +13,20 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Blog } from '../models/blog.model';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-blogs',
   standalone: true,
-  imports: [MatToolbarModule, CommonModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatOptionModule, MatInputModule, MatNativeDateModule, MatTableModule, MatPaginatorModule],
+  imports: [MatToolbarModule, CommonModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatOptionModule, MatInputModule, MatNativeDateModule, MatTableModule, MatPaginatorModule, MatIconModule, MatButtonModule],
   templateUrl: './blogs.component.html',
   styleUrl: './blogs.component.css'
 })
 export class BlogsComponent implements AfterViewInit {
   hideMain: boolean = false;
+  userInfo: boolean = false;
+  userInfoName: string = "";
   blogs: Blog[] = [];
   displayedColumns: string[] = ['id', 'name', 'category', 'article', 'author', 'createdOn'];
   dataSource = new MatTableDataSource<Blog>(this.blogs);
@@ -49,6 +53,10 @@ export class BlogsComponent implements AfterViewInit {
 
   ngOnInit() {
     this.hideMain = false;
+    if (this.blogService.getUserName() != "") {
+      this.userInfo = true;
+      this.userInfoName = this.blogService.getUserName();
+    }
   }
 
   onSubmit() {
