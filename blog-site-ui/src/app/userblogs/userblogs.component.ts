@@ -132,7 +132,7 @@ export class UserblogsComponent {
   logOut() {
     localStorage.removeItem('currentUser');
     this.blogService.setUserName("");
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
     this.snackBar.open("You have been successfully logged out", 'Close', {
       duration: 3000,
       panelClass: ['error-snackbar']
@@ -141,6 +141,6 @@ export class UserblogsComponent {
 
   onHomeIconClick() {
     this.hideMain = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }

@@ -90,6 +90,6 @@ export class BlogsComponent implements AfterViewInit {
   }
   onHomeIconClick() {
     this.hideMain = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }

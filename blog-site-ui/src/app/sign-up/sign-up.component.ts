@@ -77,6 +77,6 @@ export class SignUpComponent {
   }
   onHomeIconClick() {
     this.hideMain = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }

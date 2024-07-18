@@ -73,6 +73,6 @@ export class SignInComponent {
   }
   onHomeIconClick() {
     this.hideMain = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }
