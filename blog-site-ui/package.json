@@ -9,6 +9,10 @@
     "test": "ng test",
     "serve:ssr:blog-site-ui": "node dist/blog-site-ui/server/server.mjs"
   },
+  "engines" : { 
+    "npm" : "10.7.0",
+    "node" : "20.15.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.0.0",
