@@ -1,0 +1,8 @@
+{
+    "/blogsite/*": {
+      "target": "https://fse2appgateway.azurewebsites.net",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
