@@ -41,7 +41,7 @@ export class BlogService {
     if (typeof window !== 'undefined' && window.localStorage) {
       this.jwtToken = localStorage.getItem('currentUser');
     }
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'https://fse2appgateway.azurewebsites.net', 'JwtTokenAuth': this.jwtToken as string });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'JwtTokenAuth': this.jwtToken as string });
     return this.http.get<Blog[]>(SERVICE_URI.getBlogsByUser + this.userName, { headers: headers }).pipe(
       catchError(this.handleError)
     );
@@ -51,7 +51,7 @@ export class BlogService {
     if (typeof window !== 'undefined' && window.localStorage) {
       this.jwtToken = localStorage.getItem('currentUser');
     }
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'https://fse2appgateway.azurewebsites.net', 'JwtTokenAuth': this.jwtToken as string });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'JwtTokenAuth': this.jwtToken as string });
     return this.http.post(SERVICE_URI.addBlog, blogreq, { headers: headers, responseType: 'text' }).pipe(
       catchError(this.handleError)
     );
@@ -61,7 +61,7 @@ export class BlogService {
     if (typeof window !== 'undefined' && window.localStorage) {
       this.jwtToken = localStorage.getItem('currentUser');
     }
-    const headers = new HttpHeaders({ 'Content-Type': 'application', 'Access-Control-Allow-Origin': 'https://fse2appgateway.azurewebsites.net', 'JwtTokenAuth': this.jwtToken as string });
+    const headers = new HttpHeaders({ 'Content-Type': 'application', 'JwtTokenAuth': this.jwtToken as string });
     return this.http.delete(SERVICE_URI.deleteBlog + blogId, { headers: headers, responseType: 'text' }).pipe(
       catchError(this.handleError)
     );

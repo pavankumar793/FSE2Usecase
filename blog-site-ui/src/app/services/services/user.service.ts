@@ -24,14 +24,14 @@ export class UserService {
   }
 
   register(data: UserRegister) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'https://fse2appgateway.azurewebsites.net' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(SERVICE_URI.register, data, { headers: headers, responseType: 'text' }).pipe(
       catchError(this.handleError)
     );
   }
 
   login(data: UserLogin) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'https://fse2appgateway.azurewebsites.net' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(SERVICE_URI.login, data, { headers: headers, responseType: 'text' }).pipe(
       map(user => {
         if (typeof window !== 'undefined') {
