@@ -1,8 +1,8 @@
 export const SERVICE_URI = {
-    register: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/user/register',
-    login: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/user/login',
-    searchByCategory: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/search/',
-    getBlogsByUser: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/blogs/getAllOfUser/',
-    addBlog: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/blogs/add',
-    deleteBlog: 'http://fseusecase2appgateway.hmfjbbg7g8bef4bv.eastus.azurecontainer.io:8085/blogsite/blogs/delete/',
+    register: 'https://fse2appgateway.azurewebsites.net/blogsite/user/register',
+    login: 'https://fse2appgateway.azurewebsites.net/blogsite/user/login',
+    searchByCategory: 'https://fse2appgateway.azurewebsites.net/blogsite/search/',
+    getBlogsByUser: 'https://fse2appgateway.azurewebsites.net/blogsite/blogs/getAllOfUser/',
+    addBlog: 'https://fse2appgateway.azurewebsites.net/blogsite/blogs/add',
+    deleteBlog: 'https://fse2appgateway.azurewebsites.net/blogsite/blogs/delete/',
 }
