@@ -7,7 +7,7 @@
 }
 
 .main-body {
-    width: 1250px;
+    /* width: 1250px; */
     margin-left: 14px;
     mat-form-field {
       width: 100%;
